@@ -10,7 +10,7 @@ def calcular_farmacologico(area_utensilio):
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     area_formateada = f"{area_utensilio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"Limite \\text{{de Limpieza}} = \\left(\\frac{{395 \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
+        f" \\text{{Limite de Limpieza}} = \\left(\\frac{{395 \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{600.000 \\, \\text{{und}}}}{{4 \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_formateada} \\, \\text{{cm}}^2}}{{491.867,78 \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
