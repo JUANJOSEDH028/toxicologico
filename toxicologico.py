@@ -45,21 +45,27 @@ def calcular_toxicologico(area_utensilio):
         f"\\left(\\frac{{{area_formateada} \\, \\text{{cm}}^2}}{{491.867,78 \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
-
-# Función para el criterio MAR
+#mar
 def calcular_mar(area_utensilio):
     constante_1 = 0.00749
     constante_2 = 442800000
     constante_3 = 738
     constante_4 = 491867.78
-    limite_limpieza = (constante_1 * constante_2) / (constante_3 * constante_4) * area_utensilio
+
+    # Cálculo del límite de limpieza
+    limite_limpieza = (constante_1 * constante_2 * area_utensilio) / (constante_3 * constante_4)
+
+    # Formatear los valores con separadores de miles y decimales con ','
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     area_formateada = f"{area_utensilio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+    # Construcción de la ecuación en formato LaTeX
     ecuacion = (
         f"MAR \\left( \\frac{{\\text{{mg}}}}{{\\text{{hisopo}}}} \\right) = "
-        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot 442.800.000 \\, \\text{{mg Albendazol}})}}{{738 \\, \\text{{mg Albendazol}} \\cdot 491.867,78 \\, \\text{{cm}}^2}} \\cdot "
-        f"{area_formateada} \\, \\text{{cm}}^2 = {resultado} \\, \\text{{mg}}"
+        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot 442.800.000 \\, \\text{{mg Albendazol}} \\cdot {area_formateada} \\, \\text{{cm}}^2)}}"
+        f"{{738 \\, \\text{{mg Albendazol}} \\cdot 491.867,78 \\, \\text{{cm}}^2}} = {resultado} \\, \\text{{mg}}"
     )
+
     return ecuacion, resultado
 
 # Configuración de la aplicación Streamlit
