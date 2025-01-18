@@ -10,7 +10,7 @@ def calcular_farmacologico(area_utensilio):
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     area_formateada = f"{area_utensilio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"Limite \\text{{de Limpieza}} = \\left(\\frac{{395 \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
+        f"L\\\\'imite \\text{{de Limpieza}} = \\left(\\frac{{395 \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{600.000 \\, \\text{{und}}}}{{4 \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_formateada} \\, \\text{{cm}}^2}}{{491.867,78 \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
@@ -25,7 +25,7 @@ def calcular_ppm(area_utensilio):
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     area_formateada = f"{area_utensilio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"Limite \\text{{de Limpieza}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot 442,80 \\, \\text{{kg}}\\right) \\cdot "
+        f"L\\\\'imite \\text{{de Limpieza}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot 442,80 \\, \\text{{kg}}\\right) \\cdot "
         f"\\left(\\frac{{{area_formateada} \\, \\text{{cm}}^2}}{{491.867,78 \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
@@ -40,9 +40,25 @@ def calcular_toxicologico(area_utensilio):
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     area_formateada = f"{area_utensilio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"Limite \\text{{de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{(166 \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1000}}\\right) \\cdot "
+        f"L\\\\'imite \\text{{de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{(166 \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{600.000 \\, \\text{{und}}}}{{4 \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_formateada} \\, \\text{{cm}}^2}}{{491.867,78 \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
+    )
+    return ecuacion, resultado
+
+# Función para el criterio MAR
+def calcular_mar(area_utensilio):
+    constante_1 = 0.00749
+    constante_2 = 442800000
+    constante_3 = 738
+    constante_4 = 491867.78
+    limite_limpieza = (constante_1 * constante_2) / (constante_3 * constante_4) * area_utensilio
+    resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    area_formateada = f"{area_utensilio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    ecuacion = (
+        f"MAR \\left( \\frac{{\\text{{mg}}}}{{\\text{{hisopo}}}} \\right) = "
+        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot 442.800.000 \\, \\text{{mg Albendazol}})}}{{738 \\, \\text{{mg Albendazol}} \\cdot 491.867,78 \\, \\text{{cm}}^2}} \\cdot "
+        f"{area_formateada} \\, \\text{{cm}}^2 = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
 
@@ -59,7 +75,7 @@ if uploaded_file:
         data = pd.read_excel(uploaded_file)
 
         # Seleccionar criterio
-        criterio = st.selectbox("Selecciona el criterio:", ["Farmacológico", "PPM", "Toxicológico"])
+        criterio = st.selectbox("Selecciona el criterio:", ["Farmacológico", "PPM", "Toxicológico", "MAR (mg/hisopo)"])
 
         # Procesar datos según el criterio
         ecuaciones = []
@@ -75,6 +91,10 @@ if uploaded_file:
             for area in data.iloc[:, 0]:
                 ecuacion, resultado = calcular_toxicologico(area)
                 ecuaciones.append({"Área": area, "Ecuación": ecuacion, "Resultado": resultado})
+        elif criterio == "MAR (mg/hisopo)":
+            for area in data.iloc[:, 0]:
+                ecuacion, resultado = calcular_mar(area)
+                ecuaciones.append({"Área": area, "Ecuación": ecuacion, "Resultado": resultado})
 
         # Mostrar los resultados
         df_resultado = pd.DataFrame(ecuaciones)
@@ -86,8 +106,9 @@ if uploaded_file:
         st.download_button(
             label="Descargar ecuaciones generadas",
             data=output_text,
-            file_name=f"ecuaciones_{criterio.lower()}.txt",
+            file_name=f"ecuaciones_{criterio.lower().replace(' ', '_')}.txt",
             mime="text/plain"
         )
     except Exception as e:
         st.error(f"Error al procesar el archivo: {e}")
+
