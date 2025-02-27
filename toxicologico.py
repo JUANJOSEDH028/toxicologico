@@ -7,12 +7,12 @@ st.title("Límite de Limpieza")
 # Solicitar valores al usuario antes de cargar el archivo Excel
 peso_tableta = st.number_input("Ingrese el peso de la tableta (mg)", min_value=0.0, format="%.2f")
 tamano_lote = st.number_input("Ingrese el tamaño del lote (cantidad de tabletas)", min_value=0)
-num_dosis = st.number_input("Ingrese el número de dosis", min_value=0)
-area_total = st.number_input("Ingrese el área total del equipo (cm²)", min_value=0.0, format="%.2f")
-tamano_lotekg = st.number_input("Ingrese el tamaño de lote en Kg", min_value=0.0, format="%.2f")
-tamano_lotemg = st.number_input("Ingrese el tamanño de lote en mg", min_value=0.0, format="%.2f")
-dl50 = st.number_input("Ingrese el Dl50", min_value=0, format="%.2f")
-nombre_tableta = st.text_input("Ingrese el nombre del producto")
+num_dosis = st.number_input("Ingrese el número de dosis máx", min_value=0)
+area_total = st.number_input("Ingrese el área total del tren de equipos (cm²)", min_value=0.0, format="%.2f")
+tamano_lotekg = st.number_input("Ingrese el tamaño de lote (kg)", min_value=0.0, format="%.2f")
+tamano_lotemg = st.number_input("Ingrese el tamaño de lote (mg)", min_value=0.0, format="%.2f")
+dl50 = st.number_input("Ingrese el Dl50 (mg/kg)", min_value=0, format="%.2f")
+nombre_tableta = st.text_input("Ingrese el nombre del producto B")
 
 # Función para formatear números con coma decimal y punto para miles
 def formato_es(numero):
