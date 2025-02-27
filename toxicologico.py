@@ -77,11 +77,11 @@ def calcular_mar(area_muestreo):
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
         f"MAR \\left( \\frac{{\\text{{mg}}}}{{\\text{{hisopo}}}} \\right) = "
-        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot 442.800.000 \\, \\text{{mg Albendazol}} \\cdot {area_muestreo} \\, \\text{{cm}}^2)}}"
+        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot {tamano_lote} \\, \\text{{mg Albendazol}} \\cdot {area_muestreo} \\, \\text{{cm}}^2)}}"
         f"{{738 \\, \\text{{mg Albendazol}} \\cdot {area_total} \\, \\text{{cm}}^2}} = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
-
+    
 # Subir archivo de Excel
 uploaded_file = st.file_uploader("Sube tu archivo Excel con las áreas de muestreo", type=["xlsx"])
 
