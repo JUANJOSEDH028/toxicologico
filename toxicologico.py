@@ -22,8 +22,7 @@ def formato_es(numero):
 def calcular_farmacologico(area_muestreo):
     if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
         return "Error: Falta ingresar datos", "N/A"
-    
-   
+
     constante_1 = peso_tableta / 1000
     constante_2 = tamano_lote / num_dosis
     constante_3 = 1 / area_total
@@ -31,18 +30,20 @@ def calcular_farmacologico(area_muestreo):
     resultado = formato_es(limite_limpieza)
     
     # Formatear números para la ecuación
-    peso_tableta_fmt = formato_es(peso_tableta)
+    # Peso tableta como número entero con separadores de miles
+    peso_tableta_fmt = f"{int(peso_tableta):,}".replace(",", ".")
+    # Tamaño de lote como número entero con separadores de miles
+    tamano_lote_fmt = f"{tamano_lote:,}".replace(",", ".")
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
-    tamano_lote_fmt=formato_es(tamano_lote)
-   
+    
     ecuacion = (
-        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1.000}}\\right) \\cdot "
+        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{{tamano_lote_fmt} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
+    
     return ecuacion, resultado
-
 # Función para el criterio PPM
 def calcular_ppm(area_muestreo):
     if area_total == 0:
@@ -107,11 +108,12 @@ def calcular_mar(area_muestreo):
     resultado = formato_es(limite_limpieza)
     
     # Formatear números para la ecuación
-    tamano_lotemg_fmt = formato_es(tamano_lotemg)
-    peso_tableta_fmt = formato_es(peso_tableta)
+    # Tamaño de lote mg como número entero con separadores de miles
+    tamano_lotemg_fmt = f"{int(tamano_lotemg):,}".replace(",", ".")
+    # Peso tableta como número entero con separadores de miles
+    peso_tableta_fmt = f"{int(peso_tableta):,}".replace(",", ".")
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
-    tamano_lote_fmt=formato_es(tamano_lote)
     
     ecuacion = (
         f"MAR \\left( \\frac{{\\text{{mg}}}}{{\\text{{hisopo}}}} \\right) = "
