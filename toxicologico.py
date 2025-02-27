@@ -79,8 +79,9 @@ def calcular_toxicologico(area_muestreo):
     resultado = formato_es(limite_limpieza)
     
     # Formatear números para la ecuación
-    dl50_fmt = formato_es(dl50)
-    # Formato para tamaño de lote como número entero con separadores de miles
+    # DL50 como número entero con separadores de miles
+    dl50_fmt = f"{int(dl50):,}".replace(",", ".")
+    # Tamaño de lote como número entero con separadores de miles
     tamano_lote_fmt = f"{tamano_lote:,}".replace(",", ".")
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
