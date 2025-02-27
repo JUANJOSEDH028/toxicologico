@@ -24,7 +24,7 @@ def calcular_farmacologico(area_muestreo):
     limite_limpieza = constante_1 * constante_2 * constante_3 * area_muestreo
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"L\\\\'imite \\text{{de Limpieza}} = \\left(\\frac{{{peso_tableta} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
+        f" \\text{{Limite de Limpieza}} = \\left(\\frac{{{peso_tableta} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{{tamano_lote} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo} \\, \\text{{cm}}^2}}{{{area_total} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
@@ -41,7 +41,7 @@ def calcular_ppm(area_muestreo):
     limite_limpieza = constante_1 * constante_2 * constante_3 * area_muestreo
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"L\\\\'imite \\text{{de Limpieza}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot 442,80 \\, \\text{{kg}}\\right) \\cdot "
+        f" \\text{{Limite de Limpiezaa}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot 442,80 \\, \\text{{kg}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo} \\, \\text{{cm}}^2}}{{{area_total} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
@@ -58,7 +58,7 @@ def calcular_toxicologico(area_muestreo):
     limite_limpieza = constante_1 * constante_2 * constante_3 * constante_4 * area_muestreo
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
-        f"L\\\\'imite \\text{{de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{(166 \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1000}}\\right) \\cdot "
+        f"\\text{{Limite de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{(166 \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{600.000 \\, \\text{{und}}}}{{4 \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo} \\, \\text{{cm}}^2}}{{{area_total} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
