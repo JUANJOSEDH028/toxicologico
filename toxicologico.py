@@ -61,7 +61,7 @@ def calcular_ppm(area_muestreo):
     area_total_fmt = formato_es(area_total)
     
     ecuacion = (
-        f" \\text{{Límite de Limpiezaa}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot {tamano_lotekg_fmt} \\, \\text{{kg}}\\right) \\cdot "
+        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot {tamano_lotekg_fmt} \\, \\text{{kg}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
