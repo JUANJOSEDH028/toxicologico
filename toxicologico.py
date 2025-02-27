@@ -23,8 +23,8 @@ def calcular_farmacologico(area_muestreo):
     if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
         return "Error: Falta ingresar datos", "N/A"
     
-    a=formato_es(1000)
-    constante_1 = peso_tableta / a
+   
+    constante_1 = peso_tableta / 1.000
     constante_2 = tamano_lote / num_dosis
     constante_3 = 1 / area_total
     limite_limpieza = constante_1 * constante_2 * constante_3 * area_muestreo
