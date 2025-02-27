@@ -17,7 +17,7 @@ nombre_tableta = st.text_input("Ingrese el nombre del producto")
 # Función para formatear números con coma decimal y punto para miles
 def formato_es(numero):
     return f"{numero:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-
+ a=formato_es(1000)
 # Función para el criterio farmacológico
 def calcular_farmacologico(area_muestreo):
     if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
@@ -34,7 +34,7 @@ def calcular_farmacologico(area_muestreo):
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
     tamano_lote_fmt=formato_es(tamano_lote)
-    a=formato_es(1000)
+   
     ecuacion = (
         f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{{tamano_lote_fmt} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
