@@ -17,12 +17,13 @@ nombre_tableta = st.text_input("Ingrese el nombre del producto")
 # Función para formatear números con coma decimal y punto para miles
 def formato_es(numero):
     return f"{numero:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
- a=formato_es(1000)
+
 # Función para el criterio farmacológico
 def calcular_farmacologico(area_muestreo):
     if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
         return "Error: Falta ingresar datos", "N/A"
-
+    
+    a=formato_es(1000)
     constante_1 = peso_tableta / a
     constante_2 = tamano_lote / num_dosis
     constante_3 = 1 / area_total
