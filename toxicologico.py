@@ -53,7 +53,7 @@ def calcular_toxicologico(area_muestreo):
 
     constante_1 = 70
     constante_2 = (dl50 * 0.005) / 1000
-      constante_3 = tamano_lote / num_dosis
+    constante_3 = tamano_lote / num_dosis
     constante_4 = 1 / area_total
     limite_limpieza = constante_1 * constante_2 * constante_3 * constante_4 * area_muestreo
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
