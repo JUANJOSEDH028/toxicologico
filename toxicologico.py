@@ -78,8 +78,8 @@ def calcular_mar(area_muestreo):
     resultado = f"{limite_limpieza:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     ecuacion = (
         f"MAR \\left( \\frac{{\\text{{mg}}}}{{\\text{{hisopo}}}} \\right) = "
-        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot 442.800.000 \\, \\text{{{nombrep}}} \\cdot {area_muestreo} \\, \\text{{cm}}^2)}}"
-        f"{{738 \\, \\text{{{nombrep}}} \\cdot {area_total} \\, \\text{{cm}}^2}} = {resultado} \\, \\text{{mg}}"
+        f"\\frac{{(0,00749 \\, \\text{{mg Detergente}} \\cdot 442.800.000 \\, \\text{{{nombrep}mg}} \\cdot {area_muestreo} \\, \\text{{cm}}^2)}}"
+        f"{{738 \\, \\text{{{nombrep}mg}} \\cdot {area_total} \\, \\text{{cm}}^2}} = {resultado} \\, \\text{{mg}}"
     
     )
     return ecuacion, resultado
