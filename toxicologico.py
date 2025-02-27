@@ -12,7 +12,7 @@ area_total = st.number_input("Ingrese el área total del equipo (cm²)", min_val
 tamano_lotekg=st.number_input("Ingrese el tamaño de lote en Kg", min_value=0.0, format="%.2f")
 tamano_lotemg=st.number_input("Ingrese el tamanño de lote en mg", min_value=0.0, format="%.2f")
 dl50=st.number_input("Ingrese el Dl50", min_value=0, format="%.2f")
-nombrep = st.text_input("Ingrese el nombre del producto")
+nombre_tableta = st.text_input("Ingrese el nombre del producto")
 
 # Función para el criterio farmacológico
 def calcular_farmacologico(area_muestreo):
