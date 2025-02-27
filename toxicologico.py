@@ -24,7 +24,7 @@ def calcular_farmacologico(area_muestreo):
         return "Error: Falta ingresar datos", "N/A"
     
    
-    constante_1 = peso_tableta / 1.000
+    constante_1 = peso_tableta / 1000
     constante_2 = tamano_lote / num_dosis
     constante_3 = 1 / area_total
     limite_limpieza = constante_1 * constante_2 * constante_3 * area_muestreo
@@ -37,7 +37,7 @@ def calcular_farmacologico(area_muestreo):
     tamano_lote_fmt=formato_es(tamano_lote)
    
     ecuacion = (
-        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
+        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1.000}}\\right) \\cdot "
         f"\\left(\\frac{{{tamano_lote_fmt} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
