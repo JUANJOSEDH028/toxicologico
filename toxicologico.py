@@ -5,9 +5,9 @@ import pandas as pd
 st.title("Límite de Limpieza")
 
 # Solicitar valores al usuario antes de cargar el archivo Excel
-peso_tableta = st.number_input("Ingrese el peso de la tableta (mg)", min_value=0.0, format="%.2f")
-tamano_lote = st.number_input("Ingrese el tamaño del lote (cantidad de tabletas)", min_value=0)
-num_dosis = st.number_input("Ingrese el número de dosis máx", min_value=0)
+peso_tableta = st.number_input("Ingrese el peso de la tableta producto A (mg)", min_value=0.0, format="%.2f")
+tamano_lote = st.number_input("Ingrese el tamaño del lote pruducto B (cantidad de tabletas)", min_value=0)
+num_dosis = st.number_input("Ingrese el número de dosis máx pruducto B", min_value=0)
 area_total = st.number_input("Ingrese el área total del tren de equipos (cm²)", min_value=0.0, format="%.2f")
 tamano_lotekg = st.number_input("Ingrese el tamaño de lote (kg)", min_value=0.0, format="%.2f")
 tamano_lotemg = st.number_input("Ingrese el tamaño de lote (mg)", min_value=0.0, format="%.2f")
