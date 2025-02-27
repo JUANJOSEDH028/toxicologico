@@ -23,7 +23,7 @@ def calcular_farmacologico(area_muestreo):
     if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
         return "Error: Falta ingresar datos", "N/A"
 
-    constante_1 = peso_tableta / 1000
+    constante_1 = peso_tableta / formato_es(1000)
     constante_2 = tamano_lote / num_dosis
     constante_3 = 1 / area_total
     limite_limpieza = constante_1 * constante_2 * constante_3 * area_muestreo
@@ -33,10 +33,11 @@ def calcular_farmacologico(area_muestreo):
     peso_tableta_fmt = formato_es(peso_tableta)
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
+    tamano_lote_fmt=formato_es(tamano_lote)
     
     ecuacion = (
         f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
-        f"\\left(\\frac{{{tamano_lote} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
+        f"\\left(\\frac{{{tamano_lote_fmt} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
@@ -53,12 +54,14 @@ def calcular_ppm(area_muestreo):
     resultado = formato_es(limite_limpieza)
     
     # Formatear números para la ecuación
+    
     tamano_lotekg_fmt = formato_es(tamano_lotekg)
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
+    tamano_lote_fmt=formato_es(tamano_lote)
     
     ecuacion = (
-        f" \\text{{Límite de Limpiezaa}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot {tamano_lotekg_fmt} \\, \\text{{kg}}\\right) \\cdot "
+        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot {tamano_lotekg_fmt} \\, \\text{{kg}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
@@ -80,6 +83,7 @@ def calcular_toxicologico(area_muestreo):
     tamano_lote_fmt = formato_es(tamano_lote)
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
+    tamano_lote_fmt=formato_es(tamano_lote)
     
     ecuacion = (
         f"\\text{{Límite de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{({dl50_fmt} \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1000}}\\right) \\cdot "
@@ -105,6 +109,7 @@ def calcular_mar(area_muestreo):
     peso_tableta_fmt = formato_es(peso_tableta)
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
+    tamano_lote_fmt=formato_es(tamano_lote)
     
     ecuacion = (
         f"MAR \\left( \\frac{{\\text{{mg}}}}{{\\text{{hisopo}}}} \\right) = "
