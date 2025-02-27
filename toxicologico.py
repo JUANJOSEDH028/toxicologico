@@ -5,14 +5,14 @@ import pandas as pd
 st.title("Límite de Limpieza")
 
 # Solicitar valores al usuario antes de cargar el archivo Excel
-peso_tableta = st.number_input("Ingrese el peso de la tableta producto A (mg)", min_value=0.0, format="%.2f")
-tamano_lote = st.number_input("Ingrese el tamaño del lote producto B (cantidad de tabletas)", min_value=0)
-num_dosis = st.number_input("Ingrese el número de dosis máx producto B", min_value=0)
-area_total = st.number_input("Ingrese el área total del tren de equipos (cm²)", min_value=0.0, format="%.2f")
-tamano_lotekg = st.number_input("Ingrese el tamaño de lote producto B (kg)", min_value=0.0, format="%.2f")
-tamano_lotemg = st.number_input("Ingrese el tamaño de lote producto B (mg)", min_value=0.0, format="%.2f")
-dl50 = st.number_input("Ingrese el Dl50 producto A (mg/kg)", min_value=0, format="%.2f")
-nombre_tableta = st.text_input("Ingrese el nombre del producto B")
+peso_tableta = st.number_input("Ingrese el peso de la tableta (mg)", min_value=0.0, format="%.2f")
+tamano_lote = st.number_input("Ingrese el tamaño del lote (cantidad de tabletas)", min_value=0)
+num_dosis = st.number_input("Ingrese el número de dosis", min_value=0)
+area_total = st.number_input("Ingrese el área total del equipo (cm²)", min_value=0.0, format="%.2f")
+tamano_lotekg = st.number_input("Ingrese el tamaño de lote en Kg", min_value=0.0, format="%.2f")
+tamano_lotemg = st.number_input("Ingrese el tamanño de lote en mg", min_value=0.0, format="%.2f")
+dl50 = st.number_input("Ingrese el Dl50", min_value=0, format="%.2f")
+nombre_tableta = st.text_input("Ingrese el nombre del producto")
 
 # Función para formatear números con coma decimal y punto para miles
 def formato_es(numero):
@@ -38,12 +38,12 @@ def calcular_farmacologico(area_muestreo):
     area_total_fmt = formato_es(area_total)
     
     ecuacion = (
-        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1.000}}\\right) \\cdot "
+        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{{peso_tableta_fmt} \\, \\text{{mg}}}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{{tamano_lote_fmt} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
-    
     return ecuacion, resultado
+
 # Función para el criterio PPM
 def calcular_ppm(area_muestreo):
     if area_total == 0:
@@ -56,14 +56,12 @@ def calcular_ppm(area_muestreo):
     resultado = formato_es(limite_limpieza)
     
     # Formatear números para la ecuación
-    
     tamano_lotekg_fmt = formato_es(tamano_lotekg)
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
-    tamano_lote_fmt=formato_es(tamano_lote)
     
     ecuacion = (
-        f" \\text{{Límite de Limpieza}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot {tamano_lotekg_fmt} \\, \\text{{kg}}\\right) \\cdot "
+        f" \\text{{Límite de Limpiezaa}} = \\left(\\frac{{10 \\, \\text{{mg}}}}{{\\text{{kg}}}} \\cdot {tamano_lotekg_fmt} \\, \\text{{kg}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
     return ecuacion, resultado
@@ -89,7 +87,7 @@ def calcular_toxicologico(area_muestreo):
     area_total_fmt = formato_es(area_total)
     
     ecuacion = (
-        f"\\text{{Límite de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{({dl50_fmt} \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1.000}}\\right) \\cdot "
+        f"\\text{{Límite de Limpieza}} = 70 \\, \\text{{kg}} \\cdot \\left(\\frac{{({dl50_fmt} \\, \\text{{mg/kg}} \\cdot 0,005)}}{{1000}}\\right) \\cdot "
         f"\\left(\\frac{{{tamano_lote_fmt} \\, \\text{{und}}}}{{{num_dosis} \\, \\text{{und}}}}\\right) \\cdot "
         f"\\left(\\frac{{{area_muestreo_fmt} \\, \\text{{cm}}^2}}{{{area_total_fmt} \\, \\text{{cm}}^2}}\\right) = {resultado} \\, \\text{{mg}}"
     )
@@ -144,6 +142,9 @@ if uploaded_file:
                 ecuacion, resultado = calcular_toxicologico(area)
             elif criterio == "MAR (mg/hisopo)":
                 ecuacion, resultado = calcular_mar(area)
+            
+            # Reemplazar \cdot por * en todas las ecuaciones
+            ecuacion = ecuacion.replace("\\cdot", "*")
             
             ecuaciones.append({"Área de Muestreo": area, "Ecuación": ecuacion, "Resultado": resultado})
 
