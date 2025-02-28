@@ -32,7 +32,7 @@ def calcular_farmacologico(area_muestreo):
     
     # Formatear números para la ecuación
     # Peso tableta como número entero con separadores de miles
-    peso_tableta_fmt = f"{int(peso_tableta):,}".replace(",", ".")
+    peso_tableta_fmt = f"{int(peso_tabletaA):,}".replace(",", ".")
     # Tamaño de lote como número entero con separadores de miles
     tamano_lote_fmt = f"{tamano_lote:,}".replace(",", ".")
     area_muestreo_fmt = formato_es(area_muestreo)
