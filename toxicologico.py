@@ -9,7 +9,7 @@ peso_tabletaA = st.number_input("Ingrese el peso de la tableta de producto A (mg
 peso_tabletaB = st.number_input("Ingrese el peso de la tableta de producto B  (mg)", min_value=0.0, format="%.2f")
 tamano_lote = st.number_input("Ingrese el tamaño del lote del producto B (cantidad de tabletas)", min_value=0)
 num_dosis = st.number_input("Ingrese el número de dosis máx del producto B", min_value=0)
-area_total = st.number_input("Ingrese el área total del equipo (cm²)", min_value=0.0, format="%.2f")
+area_total = st.number_input("Ingrese el área total del tren de equipo (cm²)", min_value=0.0, format="%.2f")
 tamano_lotekg = st.number_input("Ingrese el tamaño de lote producto B (kg)", min_value=0.0, format="%.2f")
 tamano_lotemg = st.number_input("Ingrese el tamanño de lote producto B (mg)", min_value=0.0, format="%.2f")
 dl50 = st.number_input("Ingrese el Dl50 Producto A", min_value=0, format="%.2f")
