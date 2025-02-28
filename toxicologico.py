@@ -21,7 +21,7 @@ def formato_es(numero):
 
 # Función para el criterio farmacológico
 def calcular_farmacologico(area_muestreo):
-    if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
+    if peso_tabletaA == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
         return "Error: Falta ingresar datos", "N/A"
 
     constante_1 = peso_tabletaA / 1000
