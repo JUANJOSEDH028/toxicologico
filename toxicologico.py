@@ -5,7 +5,8 @@ import pandas as pd
 st.title("Límite de Limpieza")
 
 # Solicitar valores al usuario antes de cargar el archivo Excel
-peso_tableta = st.number_input("Ingrese el peso de la tableta (mg)", min_value=0.0, format="%.2f")
+peso_tabletaA = st.number_input("Ingrese el peso de la tableta de producto A (mg)", min_value=0.0, format="%.2f")
+peso_tabletaB = st.number_input("Ingrese el peso de la tableta de producto B  (mg)", min_value=0.0, format="%.2f")
 tamano_lote = st.number_input("Ingrese el tamaño del lote (cantidad de tabletas)", min_value=0)
 num_dosis = st.number_input("Ingrese el número de dosis", min_value=0)
 area_total = st.number_input("Ingrese el área total del equipo (cm²)", min_value=0.0, format="%.2f")
@@ -23,7 +24,7 @@ def calcular_farmacologico(area_muestreo):
     if peso_tableta == 0 or tamano_lote == 0 or num_dosis == 0 or area_total == 0:
         return "Error: Falta ingresar datos", "N/A"
 
-    constante_1 = peso_tableta / 1000
+    constante_1 = peso_tabletaA / 1000
     constante_2 = tamano_lote / num_dosis
     constante_3 = 1 / area_total
     limite_limpieza = constante_1 * constante_2 * constante_3 * area_muestreo
@@ -100,7 +101,7 @@ def calcular_mar(area_muestreo):
 
     constante_1 = 0.00749
     constante_2 = tamano_lotemg
-    constante_3 = peso_tableta
+    constante_3 = peso_tabletaB
     constante_4 = area_total
     limite_limpieza = (constante_1 * constante_2 * area_muestreo) / (constante_3 * constante_4)
     resultado = formato_es(limite_limpieza)
