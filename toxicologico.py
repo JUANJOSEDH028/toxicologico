@@ -110,7 +110,7 @@ def calcular_mar(area_muestreo):
     # Tamaño de lote mg como número entero con separadores de miles
     tamano_lotemg_fmt = f"{int(tamano_lotemg):,}".replace(",", ".")
     # Peso tableta como número entero con separadores de miles
-    peso_tableta_fmt = f"{int(peso_tableta):,}".replace(",", ".")
+    peso_tableta_fmt = f"{int(peso_tabletaB):,}".replace(",", ".")
     area_muestreo_fmt = formato_es(area_muestreo)
     area_total_fmt = formato_es(area_total)
     
